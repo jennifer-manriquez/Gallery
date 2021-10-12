@@ -20,4 +20,4 @@ const dummyData = {
   
 }
 
-console.log(objects[3])
+// console.log(objects[3])

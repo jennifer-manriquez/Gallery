@@ -1,12 +1,57 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import Gallery from '../components/Gallery'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import Gallery from '../components/Gallery';
+import { fetchData } from '../lib/artworks';
+import { fetchDataKeyword } from '../lib/keyword';
+import { useEffect } from 'react';
+
+// export async function getServerSideProps() {
+//   const allWorksData = await fetchData();
+//   console.log('allWorksData', allWorksData)
+//   return {
+//     props: {
+//       allWorksData
+//     }
+//   }
+// }
+
+// export async function getServerSideProps() {
+//   const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=monet`)
+//   const data = await res.json()
+
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     }
+//   }
+
+//   return {
+//     props:  {
+//       photos: data
+//     } , // will be passed to the page component as props
+//   }
+// }
 
 
-export default function Home() {
+export default function Home(props) {
+  // console.log(props.allWorksData)
+
+  useEffect(() => {
+    // console.log('inside use effect')
+    // async () => {
+    //   console.log('Before fecth')
+    //   let response = await fetchDataKeyword('monet');
+    //   console.log('After fetch')
+    //   console.log('Monet', response)
+    // }
+  fetchDataKeyword('monet').then(data => console.log(data.objectIDs.splice(0,10)))
+  // fetchData().then(data => console.log(data))
+  }, [])
+
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -16,7 +61,6 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-          Pictures cards go here
           <Gallery/>
           {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
