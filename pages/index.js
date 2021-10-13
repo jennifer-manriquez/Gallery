@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Layout from '../components/Layout';
-import Gallery from '../components/Gallery';
+import Layout from '../components/Layout/Layout';
+import Gallery from '../components/Gallery/Gallery';
 import { fetchDataKeyword } from '../lib/keyword';
 
 
 export async function getServerSideProps() {
   const allWorksData = await fetchDataKeyword();
+  console.log('asksjdf', allWorksData)
   return {
     props: {
       objects: allWorksData
@@ -15,7 +16,8 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props) {
-  let objects = props.objects.objectIDs.splice(0,20)
+  console.log('objects are', props.objects)
+  let objects = props.objects.objectIDs.splice(0,10)
   return (
     <Layout>
       <div className={styles.container}>

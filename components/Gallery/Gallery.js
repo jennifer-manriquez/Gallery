@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchData } from "../lib/artworks";
-import ArtworkPaper from "./ArtworkPaper";
 import styles from './Gallery.module.css'
-import Artwork from "./Artwork";
+import Artwork from "../Artwork/Artwork";
 
 const Gallery = (props) => {
   console.log('objects are', props.objects)
