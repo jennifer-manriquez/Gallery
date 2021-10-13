@@ -19,5 +19,3 @@ export const objects = [436965, 435882, 438738, 671456, 436085, 669033, 494772, 
 const dummyData = {
   
 }
-
-// console.log(objects[3])
