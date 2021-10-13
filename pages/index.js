@@ -18,8 +18,10 @@ import { useEffect } from 'react';
 //   }
 // }
 
+//`https://collectionapi.metmuseum.org/public/collection/v1/search?q=monet`
+
 // export async function getServerSideProps() {
-//   const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=monet`)
+//   const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=rembrandt`)
 //   const data = await res.json()
 
 //   if (!data) {
@@ -30,26 +32,69 @@ import { useEffect } from 'react';
 
 //   return {
 //     props:  {
-//       photos: data
+//       objects: data
 //     } , // will be passed to the page component as props
 //   }
 // }
 
+// export async function getServerSideProps() {
+//   let data = []
+//   const https = require('https');
+//   const req = https.request('https://collectionapi.metmuseum.org/public/collection/v1/search?q=rembrandt', (res) => {
+//     res.on('data', (chunk) => {
+//       console.log(`BODY: ${chunk}`);
+//       data = chunk;
+//     });
+//     res.on('end', () => {
+//       console.log('FINISH');
+//     });
+//   });
+//   req.on('error', (e) => {
+//     console.error(`ERROR： ${e.message}`);
+//   });
+//   req.end();
+//   return {
+//     props: {
+//       objects: data
+//     },
+//   }
+// }
+
+
+export async function getServerSideProps() {
+  const allWorksData = await fetchDataKeyword();
+  console.log('allWorksData', allWorksData)
+  // data = allWorksData.splice(0,10)
+  return {
+    props: {
+      objects: allWorksData
+    }
+  }
+}
+
+
 
 export default function Home(props) {
-  // console.log(props.allWorksData)
+  console.log(props.objects.objectIDs)
+  let objects = props.objects.objectIDs.splice(0,10)
+  console.log('objects are', objects)
 
-  useEffect(() => {
-    // console.log('inside use effect')
-    // async () => {
-    //   console.log('Before fecth')
-    //   let response = await fetchDataKeyword('monet');
-    //   console.log('After fetch')
-    //   console.log('Monet', response)
-    // }
-  fetchDataKeyword('monet').then(data => console.log(data.objectIDs.splice(0,10)))
-  // fetchData().then(data => console.log(data))
-  }, [])
+  // useEffect(() => {
+  //   // console.log('inside use effect')
+  //   // async () => {
+  //   //   console.log('Before fecth')
+  //   //   let response = await fetchDataKeyword('monet');
+  //   //   console.log('After fetch')
+  //   //   console.log('Monet', response)
+  //   // }
+  //   fetchDataKeyword('monet').then(data => {
+  //     console.log('monet data', data)
+  //     data.objectIDs.splice(0, 10).map(object => {
+  //       objects.push(object)
+  //     })
+  //   })
+  // // fetchData().then(data => console.log(data))
+  // }, [])
 
 
   return (
@@ -61,7 +106,7 @@ export default function Home(props) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-          <Gallery/>
+          <Gallery objects={objects}/>
           {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
