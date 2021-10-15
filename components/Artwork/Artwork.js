@@ -10,9 +10,7 @@ const Artwork = (props) => {
 
   useEffect(() => {
   fetchData(parseInt(props.object)).then(data => {
-    console.log('props.object is', parseInt(props.object))
-    // console.log('work data is', data)
-    setImageSource(data.primaryImage);
+    setImageSource(data.primaryImageSmall);
     setTitle(data.title);
 
   }).catch(err => console.error(err))

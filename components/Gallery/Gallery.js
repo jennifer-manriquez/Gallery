@@ -3,7 +3,6 @@ import styles from './Gallery.module.css'
 import Artwork from "../Artwork/Artwork";
 
 const Gallery = (props) => {
-  console.log('objects are', props.objects)
 
   const [objectsState, setObjectsState] = useState(
     {
@@ -17,8 +16,6 @@ const Gallery = (props) => {
 
   useEffect(() => {
     let resultsObj = chunkArray(props.objects);
-    console.log(resultsObj)
-
     setObjectsState({
       ...objectsState, columns: {
         firstColumn: resultsObj[0],

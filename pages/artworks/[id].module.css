@@ -1,0 +1,56 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr) ;
+  grid-template-rows: 1fr;
+  position: relative;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.imageContainer {
+  grid-column: 1/9;
+  grid-row-start: 1;
+}
+ 
+.image {
+  width: 100%;
+  padding: 10px;
+}
+
+.titleContainer {
+  grid-column: 8/15;
+  grid-row-start: 1;
+  background-color: white;
+  padding: 1rem 1rem;
+  margin: 0;
+  padding-left: 50px;
+  height: max-content;
+  
+}
+
+.title {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.artistName{
+  color: #7d7d7d;
+}
+
+.year{
+  color: #ebe8e8;
+  font-size: 13rem;
+  grid-column: 15/24;
+  grid-row-start: 1;
+}
+
+.textContainer{
+  grid-column: 15/24;
+  grid-row-start: 1;
+}
+
+.text{
+  color: #7d7d7d;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  margin-top: 13rem;
+}

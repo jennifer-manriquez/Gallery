@@ -1,4 +1,6 @@
 //https://collectionapi.metmuseum.org/public/collection/v1/search?q=monet
+//https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Vincent_van_Gogh
+//https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q5582&format=json
 
 export const objects = [436965, 435882, 438738, 671456, 436085, 669033, 494772, 248068, 459110, 333817, 
   437300, 438551, 436785, 435874, 461357, 436947, 19523, 437317, 436084, 438136, 437315, 852668, 

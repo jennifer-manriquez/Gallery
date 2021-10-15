@@ -7,7 +7,6 @@ import { fetchDataKeyword } from '../lib/keyword';
 
 export async function getServerSideProps() {
   const allWorksData = await fetchDataKeyword();
-  console.log('asksjdf', allWorksData)
   return {
     props: {
       objects: allWorksData
@@ -16,7 +15,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props) {
-  console.log('objects are', props.objects)
   let objects = props.objects.objectIDs.splice(0,10)
   return (
     <Layout>
