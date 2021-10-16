@@ -15,7 +15,8 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props) {
-  let objects = props.objects.objectIDs.splice(0,10)
+  // let objects = props.objects.objectIDs.splice(0,10)
+  const objects = [435817, 436622, 437879, 438821, 437394, 437097, 435868, 436002]
   return (
     <Layout>
       <div className={styles.container}>
