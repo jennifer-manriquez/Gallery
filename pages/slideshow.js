@@ -1,6 +1,6 @@
 import Head from "next/dist/shared/lib/head";
 import Link from "next/dist/client/link";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 
 export default function Slideshow() {
   return (

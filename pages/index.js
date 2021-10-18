@@ -2,11 +2,17 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Layout from '../components/Layout/Layout';
 import Gallery from '../components/Gallery/Gallery';
-import { fetchDataKeyword } from '../lib/keyword';
+import { initialData } from '../lib/initial';
 
 
-export async function getServerSideProps() {
-  const allWorksData = await fetchDataKeyword();
+export async function getStaticProps() {
+  const allWorksData = initialData();
+
+  if (!allWorksData) {
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: {
       objects: allWorksData
@@ -15,8 +21,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props) {
-  // let objects = props.objects.objectIDs.splice(0,10)
-  const objects = [435817, 436622, 437879, 438821, 437394, 437097, 435868, 436002]
+  let objects = props.objects
   return (
     <Layout>
       <div className={styles.container}>
