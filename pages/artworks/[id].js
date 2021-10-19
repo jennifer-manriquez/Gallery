@@ -5,12 +5,28 @@ import { fetchWikipediaExtract } from '../../lib/wikipedia';
 import ArtworkView from '../../components/ArtworkView/ArtworkView';
 import { initialData } from '../../lib/initial';
 
+export async function getStaticPaths() {
+  const allWorksData = initialData();
+  const paths = allWorksData.map(work => {
+    return {
+      params: {
+        id: `${work}`
+      }
+    }
+  })
 
-export async function getServerSideProps({params}) {
+  return {
+    paths, 
+    fallback: false, 
+  }
+
+}
+
+export async function getStaticProps({params}) {
   const worksData = await fetchData(params.id);
   const allWorksData = initialData();
 
-  if (!worksData| !allWorksData ) {
+  if (!worksData | !allWorksData ) {
     return {
       notFound: true,
     }
