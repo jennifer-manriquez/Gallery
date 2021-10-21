@@ -2,30 +2,18 @@ import React, { useState, useEffect } from "react";
 import styles from './Gallery.module.css'
 import Artwork from "../Artwork/Artwork";
 
-const Gallery = (props) => {
+const Gallery = ({objects, objectsData}) => {
+  console.log('gallery objects are ', objects);
+  console.log('gallery objectsData are ', objectsData);
+  const results = chunkArray(objectsData);
+  const columns = {
+    firstColumn: results[0],
+    secondColumn: results[1],
+    thirdColumn: results[2],
+    fourthColumn: results[3],
+  } 
 
-  const [objectsState, setObjectsState] = useState(
-    {
-      columns: {
-        firstColumn: [],
-        secondColumn: [],
-        thirdColumn: [],
-        fourthColumn: [],
-      }
-    })
-
-  useEffect(() => {
-    let resultsObj = chunkArray(props.objects);
-    setObjectsState({
-      ...objectsState, columns: {
-        firstColumn: resultsObj[0],
-        secondColumn: resultsObj[1],
-        thirdColumn: resultsObj[2],
-        fourthColumn: resultsObj[3],
-      },
-    })
-  }, [])
-
+  console.log('columsn are ', columns)
   function chunkArray(myArray) {
     let results = []
 
@@ -52,7 +40,7 @@ const Gallery = (props) => {
   return (
     <div className={styles.row}>
       <div className={styles.column}>
-        {objectsState.columns.firstColumn.map((object, index) => {
+        {columns.firstColumn.map((object, index) => {
             return (
               <Artwork key={index} object={object} />
             )
@@ -60,7 +48,7 @@ const Gallery = (props) => {
         )}
       </div>
       <div className={styles.column}>
-        {objectsState.columns.secondColumn.map((object, index) => {
+        {columns.secondColumn.map((object, index) => {
           return (
             <Artwork key={index} object={object} />
           )
@@ -68,7 +56,7 @@ const Gallery = (props) => {
         )}
       </div>
       <div className={styles.column}>
-        {objectsState.columns.thirdColumn.map((object, index) => {
+        {columns.thirdColumn.map((object, index) => {
           return (
             <Artwork key={index} object={object} />
           )
@@ -76,7 +64,7 @@ const Gallery = (props) => {
         )}
       </div>
       <div className={styles.column}>
-        {objectsState.columns.fourthColumn.map((object, index) => {
+        {columns.fourthColumn.map((object, index) => {
           return (
             <Artwork key={index} object={object} />
           )
