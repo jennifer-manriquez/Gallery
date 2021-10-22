@@ -124,3 +124,18 @@
   margin: 5px;
   float: right;
 }
+
+
+@media screen and (max-width: 800px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .text, .title, .year {
+    margin: 0;
+  }
+  .year {
+    line-height: 6rem;
+  }
+
+}
