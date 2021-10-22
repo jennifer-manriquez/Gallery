@@ -36,7 +36,7 @@ const ArtworkView = (
   }
 
   return (
-    <Layout>
+    <Layout insideSlideshow={true}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -82,11 +82,6 @@ const ArtworkView = (
             </Link>
           </div>
         </div>
-        <h2>
-          <Link href="/">
-            <a>Back to home</a>
-          </Link>
-        </h2>
         {modal && <Modal imageSource={imageSource} caption={title} ClickHandler={ClickHandler} />}
       </div>
     </Layout>

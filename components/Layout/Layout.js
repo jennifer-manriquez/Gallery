@@ -5,26 +5,24 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Head from 'next/head'
 
-const name = 'Jennifer Manriquez'
-export const siteTitle = 'My Blog'
-
-export default function Layout({children}) {
+export default function Layout({ children, insideSlideshow}) {
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="secondary">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Gallery
-            </Typography>
-            <Link href="/slideshow">
-              <a>START SLIDESHOW</a>
+      <header className={styles.header}>
+        <div className={styles.gallery}>Gallery</div>
+        <div>
+          {insideSlideshow ?
+            <Link href="/" >
+              <a className={styles.slideshowLink}> STOP SLIDESHOW</a>
             </Link>
-          </Toolbar>
-        </AppBar>
-      </Box>
+            :
+            <Link href="/artworks/435817">
+              <a className={styles.slideshowLink}> START SLIDESHOW</a>
+            </Link>
+          }
+        </div>
+      </header>
       <div className={styles.container}>
         {children}
       </div>

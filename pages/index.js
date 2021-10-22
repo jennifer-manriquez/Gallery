@@ -36,7 +36,7 @@ export async function getStaticProps() {
 
 export default function Home({ objects, objectsData }) {
   return (
-    <Layout>
+    <Layout insideSlideshow={false}>
       <div className={styles.container}>
         <Head>
           <title>Gallery App</title>
