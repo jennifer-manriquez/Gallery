@@ -35,8 +35,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ objects, objectsData }) {
-  console.log('Home probject objects ', objects)
-  console.log('Home probject objectsData', objectsData)
   return (
     <Layout>
       <div className={styles.container}>

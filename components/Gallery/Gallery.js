@@ -3,8 +3,6 @@ import styles from './Gallery.module.css'
 import Artwork from "../Artwork/Artwork";
 
 const Gallery = ({objects, objectsData}) => {
-  console.log('gallery objects are ', objects);
-  console.log('gallery objectsData are ', objectsData);
   const results = chunkArray(objectsData);
   const columns = {
     firstColumn: results[0],
@@ -13,7 +11,6 @@ const Gallery = ({objects, objectsData}) => {
     fourthColumn: results[3],
   } 
 
-  console.log('columsn are ', columns)
   function chunkArray(myArray) {
     let results = []
 

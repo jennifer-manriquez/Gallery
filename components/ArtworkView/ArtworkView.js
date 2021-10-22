@@ -3,6 +3,7 @@ import Layout from '../Layout/Layout';
 import Head from "next/dist/shared/lib/head";
 import Link from "next/dist/client/link";
 import Modal from '../Modal/Modal';
+import Image from 'next/image';
 
 const ArtworkView = (
   { 
@@ -42,9 +43,12 @@ const ArtworkView = (
       <div className={styles.wrapper}>
         <article className={styles.container}>
           <div className={styles.imageContainer}>
-            <img className={styles.image} src={`${imageSource}`} />
+            <img alt={`artwork ${object.objectID}`} className={styles.image} src={`${imageSource}`} />
             <button className={styles.button} onClick={() => setModal(true)}>
-              <img className={styles.expand} src='/images/Expand.png' width='20' /> View Image
+              <div className={styles.expand}>
+                <Image alt='expand' src='/images/Expand.png' width='20' height='20'/>
+              </div>
+              View Image
             </button>
           </div>
           <div className={styles.titleContainer}>
@@ -63,10 +67,18 @@ const ArtworkView = (
           </div>
           <div className={styles.controllers}>
             <Link href={nextLink}>
-              <img className={styles.linkImg} src='/images/next.png' width='30' />
+              <a>
+                <div className={styles.linkImg}>
+                  <Image alt='next' src='/images/next.png' width='30' height='30'/>
+                </div>               
+              </a>             
             </Link>
             <Link href={previousLink}>
-              <img className={styles.linkImg} src='/images/previous.png' width='30' />
+              <a>
+                <div className={styles.linkImg}>
+                  <Image alt='previous' src='/images/previous.png' width='30' height='30' />
+                </div>
+              </a>
             </Link>
           </div>
         </div>

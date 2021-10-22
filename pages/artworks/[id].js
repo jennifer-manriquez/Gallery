@@ -25,6 +25,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
   const worksData = await fetchData(params.id);
   const allWorksData = initialData();
+  const wikidata = worksData.objectWikidata_URL.match(/(\d+)/)[0];
+  const wikipediaTitle1 = await fetchWikiData(wikidata);
+  const wikipediaTitle2 = wikipediaTitle1.entities[`Q${wikidata}`].labels.en.value.split(' ').join('_');
+  const queryData = await fetchWikipediaExtract(wikipediaTitle2);
+  const wikipediaQueryData = queryData.query.pages;
+  let pageid;
+  for (var key in wikipediaQueryData) {
+    pageid = key
+  }
+  const extractText = wikipediaQueryData[pageid].extract;
 
   if (!worksData | !allWorksData ) {
     return {
@@ -36,6 +46,7 @@ export async function getStaticProps({params}) {
     props: {
       object: worksData,
       objects: allWorksData,
+      extractText
     }
   }
 }
@@ -44,30 +55,13 @@ export default function ViewbyID(props) {
   const data = props.object;
   const current = props.object.objectID;
   const objects = props.objects;
+  const extract = props.extractText;
   const position = objects.indexOf(current);
-  const text = "";
-  const wikidata = data.objectWikidata_URL.match(/(\d+)/)[0];
-  const [extract, setExtract] = useState(text);
   const [modal, setModal] = useState(false);
 
   const ClickHandler = (value) =>{
     setModal(value);
   }
-
-  useEffect(() => {
-    fetchWikiData(wikidata).then(response => {
-      const wikipediaTitle = response.entities[`Q${wikidata}`].labels.en.value.split(' ').join('_')
-      fetchWikipediaExtract(wikipediaTitle).then( data => {
-        const queryData = data.query.pages;
-        let pageid;
-        for (var key in queryData) {
-          pageid = key
-        }
-        const extractText = queryData[pageid].extract;
-        setExtract(extractText)
-      })
-    })
-  }, []);
 
   return (
     <ArtworkView 

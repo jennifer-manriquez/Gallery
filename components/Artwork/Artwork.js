@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Artwork = ({object}) => {
-  console.log('Artwork object', object)
   // const myLoader = ({ src, width, quality }) => {
   //   return `${src}?w=${width}&q=${quality || 75}`
   // }
