@@ -19,7 +19,7 @@ const ArtworkView = (
   const title = object.title;
   const imageSource = object.primaryImage;
   const artistName = object.artistDisplayName;
-  const year = object.objectDate;
+  const year = object.objectDate.match(/(?:\d{2,4}\-)?\d{2,4}(?:s)?/);
   
   let previousLink;
   if (position !== 0) {
